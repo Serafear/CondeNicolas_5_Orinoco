@@ -14,14 +14,42 @@
     </head>
 
     <body>
-        <!--Ici on utilisera le modèle d'Orinico vu dans le document avec son gradient color-->
+        <!--Ici on utilisera le modèle d'Orinico vu dans le document. On utilisera l'outil d'inspection pour trouver si l'image a un lien utilisable-->
         <header>
-            <div id="logo">
-                <div class="shopping-cart-font">
-                    <i class="fas fa-shopping-cart"></i>
+            <div id="fixed-nav-bar">  <!--Ici on a le conteneur pour toute la barre du haut qui sera fixed. L'exemple est prit sur Cdiscount-->
+                <div class="logo-orinoco">
+                    <a href="">
+                        <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://user.oc-static.com/upload/2019/09/04/15675819263013_image1.png" alt="logo Orinoco" width="360" height="162">
+                    </a> 
                 </div>
-                <p>Orinoco</p>
+                <div class="search-bar">  <!--Ici on aura la barre de recherche avec son button-->
+                    <input type="text" placeholder="Cherchez votre produit">
+                    <button type="submit" class="search-button"> <!--L'icone sera incorporée dans la barre de recherche via le css ou le js ?-->
+                        <i class="fas fa-search"></i>
+                    </button>   
+                </div>
+                <div class="nav-options">
+                    <a href="">Contact</a>
+                    <div class="font-shopping-cart">
+                        <a href="">
+                            <i class="fas fa-shopping-cart"></i>
+                            Mon panier
+                        </a>
+                    </div>
+                    <div class="theFAQ">
+                        <a href="">FAQ</a>
+                    </div>
+                    <div class="Myaccount">
+                        <a href="">Mon compte</a>
+                    </div>
+                </div>    
             </div>
         </header>
+    
+        <!--Bloc produits-->
+        <div id="Products">
+            <div class="products-list">
+            </div>
+        </div>    
     </body>
 </html>
