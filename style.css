@@ -1,2 +1,12 @@
+.container {
+    background-color: #F3E9F1;
+}
 
+.nav-options {
+    background-color: #A74F72;
+}
 
+.search-button {
+    flex: 1 1 3em;
+    background: linear-gradient(130deg,#C97A57,#9E63D0);
+}

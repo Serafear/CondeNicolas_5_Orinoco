@@ -6,7 +6,8 @@
     <meta name="keywords" content="site web, e-commerce, camera">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="tailwind.css">
+    <link rel="stylesheet" type="text/css" href="./css/tailwind.css">
+    <link rel="stylesheet" href="style.css">
 
     <script src="https://kit.fontawesome.com/e56d892efa.js" crossorigin="anonymous"></script>
     
@@ -15,15 +16,16 @@
 
 <body>
     <header>
-        <div class="container flex flex-wrap items-center fixed justify-between p-5">
-            <div class="logo-orinoco w-3/6 md:w-5/12">
+        <div class="container flex flex-wrap items-center fixed justify-between p-5 lg:max-w-screen-2xl">
+            <div class="logo-orinoco w-3/6 md:w-2/12">
                 <a href="index.html">
                     <img style="-webkit-user-select: none;cursor: pointer;" src="./image/bg-removed-logo.webp" alt="logo Orinoco" width="360" height="162">
                 </a> 
             </div>
+
             <div class="flex md:hidden">
                 <button id="bars">
-                    <div class="toggle block w-20">
+                    <div class="toggle block w-20 focus:outline-black">
                         <i class="fas fa-bars fa-3x"></i>
                     </div> 
                     <div class="toggle hidden w-20">
@@ -32,14 +34,14 @@
                 </button>
             </div>
             
-            <div class="toggle hidden md:flex md:w-auto w-full text-right text-bold nav-options bg-red-50">
+            <div class="toggle hidden md:flex md:w-auto lg:w-5/12 w-full text-right md:justify-center lg:justify-around text-bold nav-options lg:order-last text-white">
                 <div class="thecontact block md:inline-block px-3 py-3">
                     <a href="./html-pages/Contact.html">Contact</a>
                 </div>
                 
                 <div class="font-shopping-cart block md:inline-block px-3 py-3">
                     <a href="./html-pages/shoppingcart.html">
-                        <i class="fas fa-shopping-cart"></i>
+                        <i class="text-gray-900 fas fa-shopping-cart"></i>
                         Mon panier
                     </a>
                 </div>
@@ -52,8 +54,9 @@
                     <a href="./html-pages/Myaccount.html">Mon compte</a>
                 </div>
             </div>
-            <div class="search-bar flex flex-row shadow mt-3">  <!--Ici on aura la barre de recherche avec son button qui sera en radial gradiant-->
-                <input class="w-full md:w-auto " type="text" placeholder="Cherchez votre produit">
+
+            <div class="search-bar flex flex-row shadow mt-3 w-full lg:w-2/6">  <!--Ici on aura la barre de recherche avec son button qui sera en radial gradiant-->
+                <input class="w-full" type="text" placeholder="Cherchez votre produit">
                 <button type="submit" class="search-button"> <!--L'icone sera incorporée dans la barre de recherche via le css ou le js ?-->
                     <i class="fas fa-search"></i>
                 </button>   
