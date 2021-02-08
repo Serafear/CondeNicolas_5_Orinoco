@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <div class="container flex flex-wrap items-center fixed justify-between p-5 lg:max-w-screen-2xl">
+        <div class="container-1 flex flex-wrap items-center md:sticky justify-between p-5 lg:max-w-screen-2xl xl:max-w-full">
             <div class="logo-orinoco w-3/6 md:w-2/12">
                 <a href="index.html">
                     <img style="-webkit-user-select: none;cursor: pointer;" src="./image/bg-removed-logo.webp" alt="logo Orinoco" width="360" height="162">
@@ -55,18 +55,31 @@
                 </div>
             </div>
 
-            <div class="search-bar flex flex-row shadow mt-3 w-full lg:w-2/6">  <!--Ici on aura la barre de recherche avec son button qui sera en radial gradiant-->
-                <input class="w-full" type="text" placeholder="Cherchez votre produit">
-                <button type="submit" class="search-button"> <!--L'icone sera incorporée dans la barre de recherche via le css ou le js ?-->
-                    <i class="fas fa-search"></i>
-                </button>   
-            </div>
+            <form class="search-bar-form mt-3 w-full lg:w-2/6">
+                <div class="search-bar flex flex-row shadow ">  <!--Ici on aura la barre de recherche avec son button qui sera en radial gradiant-->
+                    <input class="w-full" type="text" placeholder="Cherchez votre produit" id="search-bar">
+                    <button type="submit" class="search-button"> <!--L'icone sera incorporée dans la barre de recherche via le css ou le js ?-->
+                        <i class="fas fa-search"></i>
+                    </button>   
+                </div>
+            </form>
         </div>
-    
     </header>
+
+    <section class="container-2 bg-red-600"> <!--ne pas oublier que header est fixed donc besoin de margin--><!--j'ai passé la position en sticky pour voir-->
+        <h2 class="font-bold">Produits</h2>
+        <div id="test-teddybear" class="flex flex-col">
+            <div id="name"></div>
+            <div id="price"></div>
+            <div id="imageUrl" class="order-first"></div>
+            <div id="description"></div>
+        </div>
+        <div id="test-camera"></div>
+        <div id="test-furniture"></div>
+    </section>
     
     <script src="./script-toggle.js"></script>
 
-    <script src="./javascript/api.js"></script>
+    <script src="./javascript/api-fetch-1.js"></script>
 </body>
 </html>
