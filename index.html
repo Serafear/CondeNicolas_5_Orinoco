@@ -67,46 +67,56 @@
     </header>
 
     <div class="container-image flex flex-col gap-6">
-        <section class="container-2 gap-2 grid justify-center h-3/6"> <!----><!--grid position center permet de centrer l'image-->
+        <section class="container-2 gap-2 grid justify-center bg-yellow-500"> <!----><!--grid position center permet de centrer l'image-->
             <h2 class="font-bold flex justify-center">Oursons</h2> <!--le flex du h2 et justify center le centre dans la grid-->
-            <div class="teddybear lg:max-w-screen-md">
+            <div class="teddybear bg-gray-600 lg:max-w-screen-md">
                 <div id="teddybear-1" class="slider">
+                    <div id="imageUrl-t1" class=""></div>  <!--image en premier pour que les autres éléments apparaissent plus bas-->
                     <div id="name-t1" class="font-bold"></div>
                     <div id="price-t1" class=""></div>
-                    <div id="imageUrl-t1" class=""></div>
                     <div id="description-t1" class=""></div>
                 </div>
                 <div id="teddybear-2" class="slider">
+                    <div id="imageUrl-t2" class=""></div>
                     <div id="name-t2" class="font-bold"></div>
                     <div id="price-t2" class=""></div>
-                    <div id="imageUrl-t2" class=""></div>
                     <div id="description-t2" class=""></div>
                 </div>
                 <div id="teddybear-3" class="slider">
+                    <div id="imageUrl-t3" class=""></div>
                     <div id="name-t3" class="font-bold"></div>
                     <div id="price-t3" class=""></div>
-                    <div id="imageUrl-t3" class=""></div>
                     <div id="description-t3" class=""></div>
                 </div>
                 <div id="teddybear-4" class="slider">
+                    <div id="imageUrl-t4" class=""></div>
                     <div id="name-t4" class="font-bold"></div>
                     <div id="price-t4" class=""></div>
-                    <div id="imageUrl-t4" class=""></div>
                     <div id="description-t4" class=""></div>
                 </div>
                 <div id="teddybear-5" class="slider">
+                    <div id="imageUrl-t5" class=""></div>
                     <div id="name-t5" class="font-bold"></div>
                     <div id="price-t5" class=""></div>
-                    <div id="imageUrl-t5" class=""></div>
                     <div id="description-t5" class=""></div>
                 </div>
+
+                <a href="./html-pages/pageproduit.html" class="flex justify-around"> <!--ces deux éléments permettent de centrer le button pour du responsive-->
+                    <button class="bg-yellow-400 w-12 m-auto">Voir</button>  <!--le m-auto recentre le texte dans son objet-->
+                </a>
+                <div class="flex flex-row text-black dot justify-between w-full bg-blue-800">
+                    <div class="left-0" onclick="plusDivs(-1)"><i class="bg-green-600 cursor-pointer fas fa-angle-left fa-3x"></i></div>
+                    <div class="flex order-3" onclick="plusDivs(1)"><i class="bg-green-600 cursor-pointer fas fa-angle-right fa-3x"></i></div>
+                    <div class="flex bg-green-400 gap-2 m-auto">
+                        <span class="badge demo text-black border-solid border-2 border-black rounded-full dot" onclick="currentDiv(1)"></span>
+                        <span class="badge demo text-black border-solid border-2 border-black rounded-full dot" onclick="currentDiv(2)"></span>
+                        <span class="badge demo text-black border-solid border-2 border-black rounded-full dot" onclick="currentDiv(3)"></span>
+                        <span class="badge demo text-black border-solid border-2 border-black rounded-full dot" onclick="currentDiv(5)"></span>
+                        <span class="badge demo text-black border-solid border-2 border-black rounded-full dot" onclick="currentDiv(4)"></span>
+                    </div>
+                </div>
             </div>
-            <button class="absolute top-60" onclick="plusDivs(-1)">
-                <i class="fas fa-angle-left fa-3x"></i>
-            </button>
-            <button class=" absolute top-60 right-0" onclick="plusDivs(1)">
-                <i class="fas fa-angle-right fa-3x"></i>
-            </button>
+            
         </section>
 
         <!--section caméra-->
@@ -114,42 +124,48 @@
             <h2 class="font-bold flex justify-center">Caméras</h2>
             <div class="cameras lg:max-w-screen-md">
                 <div id="camera-1" class="slider2">
-                    <div id="name-c1" class="font-bold absolute"></div>
-                    <div id="price-c1" class="absolute mt-7"></div>
                     <div id="imageUrl-c1" class=""></div>
-                    <div id="description-c1" class="md:absolute"></div>
+                    <div id="name-c1" class="font-bold"></div>
+                    <div id="price-c1" class=""></div>
+                    <div id="description-c1" class=""></div>
                 </div>
                 <div id="camera-2" class="flex flex-col slider2">
-                    <div id="name-c2" class="font-bold absolute"></div>
-                    <div id="price-c2" class="absolute mt-7"></div>
-                    <div id="imageUrl-c2" class="order-first"></div>
-                    <div id="description-c2" class="md:absolute md:mt-14"></div>
+                    <div id="imageUrl-c2" class=""></div>
+                    <div id="name-c2" class="font-bold"></div>
+                    <div id="price-c2" class=""></div>
+                    <div id="description-c2" class=""></div>
                 </div>
                 <div id="camera-3" class="flex flex-col slider2">
-                    <div id="name-c3" class="font-bold absolute"></div>
-                    <div id="price-c3" class="absolute mt-7"></div>
-                    <div id="imageUrl-c3" class="order-first"></div>
-                    <div id="description-c3" class="md:absolute md:mt-14"></div>
+                    <div id="imageUrl-c3" class=""></div>
+                    <div id="name-c3" class="font-bold"></div>
+                    <div id="price-c3" class=""></div>
+                    <div id="description-c3" class=""></div>
                 </div>
                 <div id="camera-4" class="flex flex-col slider2">
-                    <div id="name-c4" class="font-bold absolute"></div>
-                    <div id="price-c4" class="absolute mt-7"></div>
-                    <div id="imageUrl-c4" class="order-first"></div>
-                    <div id="description-c4" class="md:absolute md:mt-14"></div>
+                    <div id="imageUrl-c4" class=""></div>
+                    <div id="name-c4" class="font-bold"></div>
+                    <div id="price-c4" class=""></div>
+                    <div id="description-c4" class=""></div>
                 </div>
                 <div id="camera-5" class="flex flex-col slider2">
-                    <div id="name-c5" class="font-bold absolute"></div>
-                    <div id="price-c5" class="absolute mt-7"></div>
-                    <div id="imageUrl-c5" class="order-first"></div>
-                    <div id="description-c5" class="md:absolute md:mt-14"></div>
+                    <div id="imageUrl-c5" class=""></div>
+                    <div id="name-c5" class="font-bold"></div>
+                    <div id="price-c5" class=""></div>
+                    <div id="description-c5" class=""></div>
                 </div>
             </div>
-            <button class="absolute top-3/4 button2l" onclick="plusDivs2(-1)">
-                <i class="fas fa-angle-left fa-3x"></i>
-            </button>
-            <button class=" absolute top-3/4 right-0 button2r" onclick="plusDivs2(1)">
-                <i class="fas fa-angle-right fa-3x"></i>
-            </button>
+            
+            <div class="flex flex-row text-black dot2 justify-between w-full bg-blue-800">
+                <div class="left-0" onclick="plusDivs2(-1)"><i class="bg-green-600 cursor-pointer fas fa-angle-left fa-3x"></i></div>
+                <div class="flex order-3" onclick="plusDivs2(1)"><i class="bg-green-600 cursor-pointer fas fa-angle-right fa-3x"></i></div>
+                <div class="flex bg-green-400 gap-2 m-auto">
+                    <span class="badge demo2 text-black border-solid border-2 border-black rounded-full dot2" onclick="currentDiv(1)"></span>
+                    <span class="badge demo2 text-black border-solid border-2 border-black rounded-full dot2" onclick="currentDiv(2)"></span>
+                    <span class="badge demo2 text-black border-solid border-2 border-black rounded-full dot2" onclick="currentDiv(3)"></span>
+                    <span class="badge demo2 text-black border-solid border-2 border-black rounded-full dot2" onclick="currentDiv(5)"></span>
+                    <span class="badge demo2 text-black border-solid border-2 border-black rounded-full dot2" onclick="currentDiv(4)"></span>
+                </div>
+            </div>
         </section>
 
         <!--section meubles-->
@@ -157,47 +173,51 @@
             <h2 class="font-bold flex justify-center">Meubles</h2>
             <div class="furnitures lg:max-w-screen-md">
                 <div id="furniture-1" class="slider3">
-                    <div id="name-f1" class="font-bold absolute"></div>
-                    <div id="price-f1" class="absolute mt-7"></div>
                     <div id="imageUrl-f1" class=""></div>
-                    <div id="description-f1" class="md:absolute"></div>
+                    <div id="name-f1" class="font-bold"></div>
+                    <div id="price-f1" class=""></div>
+                    <div id="description-f1" class=""></div>
                 </div>
                 <div id="furniture-2" class="flex flex-col slider3">
-                    <div id="name-f2" class="font-bold absolute"></div>
-                    <div id="price-f2" class="absolute mt-7"></div>
                     <div id="imageUrl-f2" class=""></div>
-                    <div id="description-f2" class="md:absolute md:mt-14"></div>
+                    <div id="name-f2" class="font-bold"></div>
+                    <div id="price-f2" class=""></div>
+                    <div id="description-f2" class=""></div>
                 </div>
                 <div id="camera-3" class="flex flex-col slider3">
-                    <div id="name-f3" class="font-bold absolute"></div>
-                    <div id="price-f3" class="absolute mt-7"></div>
                     <div id="imageUrl-f3" class=""></div>
-                    <div id="description-f3" class="md:absolute md:mt-14"></div>
+                    <div id="name-f3" class="font-bold"></div>
+                    <div id="price-f3" class=""></div>
+                    <div id="description-f3" class=""></div>
                 </div>
                 <div id="furniture-4" class="flex flex-col slider3">
-                    <div id="name-f4" class="font-bold absolute"></div>
-                    <div id="price-f4" class="absolute mt-7"></div>
                     <div id="imageUrl-f4" class=""></div>
-                    <div id="description-f4" class="md:absolute md:mt-14"></div>
+                    <div id="name-f4" class="font-bold"></div>
+                    <div id="price-f4" class=""></div>
+                    <div id="description-f4" class=""></div>
                 </div>
                 <div id="funiture-5" class="flex flex-col slider3">
-                    <div id="name-f5" class="font-bold absolute"></div>
-                    <div id="price-f5" class="absolute mt-7"></div>
                     <div id="imageUrl-f5" class=""></div>
-                    <div id="description-f5" class="md:absolute md:mt-14"></div>
+                    <div id="name-f5" class="font-bold"></div>
+                    <div id="price-f5" class=""></div>
+                    <div id="description-f5" class=""></div>
                 </div>
-                <button class="absolute top-3/4 mt-96 button3l" onclick="plusDivs3(-1)">
-                    <i class="fas fa-angle-left fa-3x"></i>
-                </button>
-                <button class="absolute top-3/4 mt-96 right-0 button3r" onclick="plusDivs3(1)">
-                    <i class="fas fa-angle-right fa-3x"></i>
-                </button>
             </div>
-            
+            <div class="flex flex-row text-black dot3 justify-between w-full bg-blue-800">
+                <div class="left-0" onclick="plusDivs3(-1)"><i class="bg-green-600 cursor-pointer fas fa-angle-left fa-3x"></i></div>
+                <div class="flex order-3" onclick="plusDivs3(1)"><i class="bg-green-600 cursor-pointer fas fa-angle-right fa-3x"></i></div>
+                <div class="flex bg-green-400 gap-2 justify-center m-auto">
+                    <span class="badge demo3 text-black border-solid border-2 border-black rounded-full dot3" onclick="currentDiv(1)"></span>
+                    <span class="badge demo3 text-black border-solid border-2 border-black rounded-full dot3" onclick="currentDiv(2)"></span>
+                    <span class="badge demo3 text-black border-solid border-2 border-black rounded-full dot3" onclick="currentDiv(3)"></span>
+                    <span class="badge demo3 text-black border-solid border-2 border-black rounded-full dot3" onclick="currentDiv(5)"></span>
+                    <span class="badge demo3 text-black border-solid border-2 border-black rounded-full dot3" onclick="currentDiv(4)"></span>
+                </div>
+            </div>
+             
         </section>
-    </div>
 
-    <div id="test-furniture"></div>
+    </div>
     
     <script src="./script-toggle.js"></script>
 

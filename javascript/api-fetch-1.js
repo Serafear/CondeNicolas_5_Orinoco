@@ -135,41 +135,59 @@ apiCallFurnitures();
    
 
 //cette partie est destinée au slide
-    var slideIndex = 1;
-    showDivs(slideIndex);
-    
-    function plusDivs(n) {
-      showDivs(slideIndex += n);
-    }
-    
-    function showDivs(n) {
-      var i;
-      var x = document.getElementsByClassName("slider");
-      if (n > x.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
-         x[i].style.display = "none";  
-      }
-      x[slideIndex-1].style.display = "block";  
-    }
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function currentDiv(n) {
+  showDivs(slideIndex = n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("slider");
+  var dots = document.getElementsByClassName("demo");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" bg-red-400", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " bg-red-400";
+}
 //slide 2
-    var slideIndex = 1;
-    showDivs2(slideIndex);
-    
-    function plusDivs2(n) {
-      showDivs2(slideIndex += n);
-    }
-    
-    function showDivs2(n) {
-      var i;
-      var x = document.getElementsByClassName("slider2");
-      if (n > x.length) {slideIndex = 1}
-      if (n < 1) {slideIndex = x.length}
-      for (i = 0; i < x.length; i++) {
-         x[i].style.display = "none";  
-      }
-      x[slideIndex-1].style.display = "block";  
-    }
+var slideIndex = 1;
+showDivs2(slideIndex);
+
+function plusDivs2(n) {
+  showDivs2(slideIndex += n);
+}
+
+function currentDiv2(n) {
+  showDivs2(slideIndex = n);
+}
+
+function showDivs2(n) {
+  var i;
+  var x = document.getElementsByClassName("slider2");
+  var dots = document.getElementsByClassName("demo2");
+  if (n > x.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" bg-red-400", "");
+  }
+  x[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " bg-red-400";
+}
 
     //slide 3
     var slideIndex = 1;
@@ -179,14 +197,23 @@ apiCallFurnitures();
       showDivs3(slideIndex += n);
     }
     
+    function currentDiv3(n) {
+      showDivs3(slideIndex = n);
+    }
+    
     function showDivs3(n) {
       var i;
       var x = document.getElementsByClassName("slider3");
+      var dots = document.getElementsByClassName("demo3");
       if (n > x.length) {slideIndex = 1}
       if (n < 1) {slideIndex = x.length}
       for (i = 0; i < x.length; i++) {
-         x[i].style.display = "none";  
+        x[i].style.display = "none";  
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" bg-red-400", "");
       }
       x[slideIndex-1].style.display = "block";  
+      dots[slideIndex-1].className += " bg-red-400";
     }
 

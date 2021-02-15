@@ -14,4 +14,8 @@
 .container-3 {
     background-color: #b48395;
 }
+.slider{
+    display: none;
+}
+.badge {height:13px;width:13px;padding:0}
 
