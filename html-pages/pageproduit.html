@@ -6,23 +6,78 @@
     <meta name="keywords" content="site web, e-commerce, camera">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="./css/tailwind.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/css/tailwind.css">
+    <link rel="stylesheet" href="/style.css">
 
     <script src="https://kit.fontawesome.com/e56d892efa.js" crossorigin="anonymous"></script>
     
     <title>Orinoco</title>
 </head>
 <body>
-    <div class="container flex">
-        <div id="photo" class="bg-red-700 w-32 h-48"></div>
-        <div id="name" class="bg-yellow-600"></div>
-        <div id="price" class="bg-green-500"></div>
-        <div id="description" class="bg-blue-600"></div>
-        <div id="select" class="bg-indigo-600"></div>
-        <div class="bg"></div>
-        <div class="bg"></div>
-        <div class="bg"></div>
+    <header>
+        <div class="container-1 flex flex-wrap items-center md:sticky justify-between p-5 lg:max-w-screen-2xl xl:max-w-full">
+            <div class="logo-orinoco w-3/6 md:w-2/12">
+                <a href="/index.html">
+                    <img style="-webkit-user-select: none;user-select: none;cursor: pointer;" src="/image/bg-removed-logo.webp" alt="logo Orinoco" width="360" height="162">
+                </a> 
+            </div>
+
+            <div class="flex md:hidden">
+                <button id="bars">
+                    <span class="toggle block w-20">
+                        <i class="fas fa-bars fa-3x"></i>
+                    </span> 
+                    <span class="toggle hidden w-20">
+                        <i class="fas fa-check-square fa-3x"></i>
+                    </span>
+                </button>
+            </div>
+            
+            <div class="toggle hidden md:flex md:w-auto lg:w-5/12 w-full text-right md:justify-center lg:justify-around text-bold nav-options lg:order-last text-white">
+                <div class="thecontact block md:inline-block px-3 py-3">
+                    <a href="./html-pages/Contact.html">Contact</a>
+                </div>
+                
+                <div class="font-shopping-cart block md:inline-block px-3 py-3">
+                    <a href="./html-pages/shoppingcart.html">
+                        <i class="text-gray-900 fas fa-shopping-cart"></i>
+                        Mon panier
+                    </a>
+                </div>
+
+                <div class="theFAQ block md:inline-block px-3 py-3">
+                    <a href="./html-pages/FAQ.html">FAQ</a>
+                </div>
+
+                <div class="Myaccount block md:inline-block px-3 py-3">
+                    <a href="./html-pages/Myaccount.html">Mon compte</a>
+                </div>
+            </div>
+
+            <form class="search-bar-form mt-3 w-full lg:w-2/6">
+                <div class="search-bar flex flex-row shadow ">  <!--Ici on aura la barre de recherche avec son button qui sera en radial gradiant-->
+                    <input class="w-full" type="text" placeholder="Cherchez votre produit" id="search-bar">
+                    <button type="submit" class="search-button"> <!--L'icone sera incorporée dans la barre de recherche via le css ou le js ?-->
+                        <i class="fas fa-search"></i>
+                    </button>   
+                </div>
+            </form>
+        </div>
+    </header>
+
+    <div class="flex items-center justify-center"> 
+        <div class="container grid grid-cols-3 gap-2">
+            <div id="photo" class="bg-red-700 p-6 row-span-2">photo</div>
+            <div id="name" class="bg-yellow-600 p-6 col-span-2">nom</div>
+            <div id="description" class="bg-green-500 p-6 col-span-2">description</div>
+            <div id="select" class="bg-indigo-600 p-6">barre de selection</div>
+            <div class="bg"></div>
+            <div class="bg"></div>
+            <div class="bg"></div>
+        </div>
     </div>
+
+    <script src="/script-toggle.js"></script>
+    <script src="/javascript/dynamicpage.js"></script>
 </body>
 </html>

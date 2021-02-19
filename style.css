@@ -19,3 +19,14 @@
 }
 .badge {height:13px;width:13px;padding:0}
 
+/*ici on centre le button et on le customise*/
+.div-test {
+   display: flex;
+   justify-content: center;
+}
+#test1,#test2,#test3,#test4,#test5 {
+    background-color: yellowgreen;
+    padding: 0.5em;
+    border-radius: 10%;
+}
+
