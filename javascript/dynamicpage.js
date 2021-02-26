@@ -12,6 +12,5 @@ console.log(productId);
         return response.json()}) //on peut avoir à la place du json du .arrayBuffer(), du .blol(), du .text(), et du .formData()
       .then(function(data){
         console.log(data);
-        doc
       });
 
