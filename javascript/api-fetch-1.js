@@ -3,10 +3,13 @@
 //cette partie concerne le fetch de l'API teddies
 let teddies;
 
+
 const fetchTeddies = async() => {
   teddies = await fetch('http://localhost:3000/api/teddies').then(res => res.json());
   console.log(teddies);
+  
 };
+
 
 const showTeddies = async() => {
   await fetchTeddies();
@@ -15,16 +18,20 @@ const showTeddies = async() => {
     teddies
     .map(teddy =>(
       `
-      <li class="teddy-item ">
+      <li class="teddy-item grid grid-flow-row">
           <img class="teddy-photo" src="${teddy.imageUrl}"/>
           <h3 class="teddy-name">${teddy.name}</h3>
           <h4 class="teddy-price">${teddy.price} euros</h4>
           <p class="teddy-description">${teddy.description}</p>
+          <div class="flex justify-center">
+              <button onClick="window.location='./html-pages/pageproduit.html?productId=${teddy._id}';" class="btnTest bg-yellow-500 justify-center w-20">Voir</button>
+          </div>
       </li>
       
       `
+      
     )).join('')
-    );
+  );
 }
 
 showTeddies();
@@ -51,6 +58,9 @@ const showCameras = async() => {
           <h3 class="teddy-name">${camera.name}</h3>
           <h4 class="teddy-price">${camera.price} euros</h4>
           <p class="teddy-description">${camera.description}</p>
+          <div class="flex justify-center">
+              <button onClick="window.location='./html-pages/pageproduit.html';" class="btnTest bg-yellow-500 justify-center w-20">Voir</button>
+          </div>
       </li>
       
       `
@@ -80,6 +90,9 @@ const showFurnitures = async() => {
           <h3 class="teddy-name">${furniture.name}</h3>
           <h4 class="teddy-price">${furniture.price} euros</h4>
           <p class="teddy-description">${furniture.description}</p>
+          <div class="flex justify-center">
+              <button onClick="window.location='./html-pages/pageproduit.html';" class="btnTest bg-yellow-500 justify-center w-20">Voir</button>
+          </div>
       </li>
       
       `
