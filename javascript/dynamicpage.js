@@ -65,19 +65,30 @@ if (window.location.href.includes('teddies')>0) {
 
         var selChoice = document.getElementById("scrollCustom");   /*ici la recherche se fait sur le clic. Dans la version précédente: code hors du btn, la page se reloadait à chaque fois et recupérait la première valeur tan. ici le bouton recupère les infos du select*/
         var customChoice = selChoice.options[selChoice.selectedIndex].text;
-
-        var cartInfo = {
-          name: urlTeddies.name,
-          description: urlTeddies.description,
-          price: urlTeddies.price,
-          custom: customChoice,
-          productId,
+     
+        //si le local storage est vide alors on crée un array
+        if(localStorage.getItem('cartInfo') == null) {
+          localStorage.setItem('cartInfo', '[]');
         }
+
         
 
-        console.log(cartInfo);
+        var cartInfo = {
+          name : urlTeddies.name,
+          description : urlTeddies.description,
+          price : urlTeddies.price,
+          custom : customChoice,
+          product_id : productId,
+        }
+        
+        var newData = cartInfo;
 
-        localStorage.setItem('cartInfo', JSON.stringify(cartInfo));
+        var oldData = JSON.parse(localStorage.getItem('cartInfo'));
+        oldData.push(newData);
+
+        console.log(oldData);
+
+        localStorage.setItem('cartInfo', JSON.stringify(oldData));
 
 
 

@@ -1,8 +1,10 @@
-var order = JSON.parse(localStorage.getItem('cartInfo'));
-console.log(order);
+var orders = JSON.parse(localStorage.getItem('cartInfo'));
+console.log(orders);
 
 if(localStorage.getItem('cartInfo') != null) {
     document.getElementById('cartContain').innerHTML =(
+        orders 
+        .map(order => (
         ` 
             <ul id="cartList" class="grid grid-flow-col bg-red-600 gap-5 justify-evenly text-base">
                 <li id="cartName" class="w-14 pl-2">${order.name}</li>
@@ -15,12 +17,14 @@ if(localStorage.getItem('cartInfo') != null) {
                 </div>
             </ul>
         `
+        ))
     )
 
     const btnRemoveStorage = document.getElementById("clearStorage");
 
     btnRemoveStorage.onclick = () => {
         localStorage.removeItem('cartInfo');
+        localStorage.removeItem('informations');
         location.href = '/index.html'
     }
     
@@ -43,10 +47,10 @@ if(localStorage.getItem('cartInfo') != null) {
         const formValidateBuy = document.getElementById('formValidateBuy');
 
         formValidateBuy.onclick =() => {
-            const url = ''
+            const url = '/order' //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? 
             
             //le format attendu des données est sous cette forme => ex: ['55891484','484848484']
-            const productId = order.map (
+            const productId = orders.map (
                 (product) => {
                     return product.product_id
                 }
@@ -57,11 +61,11 @@ if(localStorage.getItem('cartInfo') != null) {
             const informations = {
                 firstName : document.getElementById('fname').value, /*pour que l'élément s'affiche dans lapage thankyou, le .value est indispensable . Si jamais ça ne marche pas, essayer de mettre firstName entre guillemets */
                 lastName : document.getElementById('lname').value,
-                address : document.getElementById('adress'),
-                city : document.getElementById('city'),
-                email : document.getElementById('email'),
+                address : document.getElementById('adress').value,
+                city : document.getElementById('city').value,
+                email : document.getElementById('email').value,
                 productId,
-            }
+            };
 
             const options = {
                 method : 'POST',
@@ -69,7 +73,7 @@ if(localStorage.getItem('cartInfo') != null) {
                 headers : {
                     'content-type':'application/json'
                 }
-            }
+            };
 
             fetch(url, options)
             .then(res => res.json())
