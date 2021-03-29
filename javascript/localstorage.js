@@ -47,29 +47,36 @@ if(localStorage.getItem('cartInfo') != null) {
         const formValidateBuy = document.getElementById('formValidateBuy');
 
         formValidateBuy.onclick =() => {
-            const url = '/order' //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? 
-            
+            const url = 'http://localhost:3000/api/teddies/order'; //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? le /api est super important. 
+
+            //construction de l'objet contact attendu par le backend. Voir le server du backend. 
+            const panier = {
+                contact : {},
+                products : [], 
+            }
+
             //le format attendu des données est sous cette forme => ex: ['55891484','484848484']
-            const productId = orders.map (
+            panier.products = orders.map (
                 (product) => {
                     return product.product_id
                 }
             )
 
-            console.log(productId)
+            
 
-            const informations = {
+            panier.contact = {
                 firstName : document.getElementById('fname').value, /*pour que l'élément s'affiche dans lapage thankyou, le .value est indispensable . Si jamais ça ne marche pas, essayer de mettre firstName entre guillemets */
                 lastName : document.getElementById('lname').value,
                 address : document.getElementById('adress').value,
                 city : document.getElementById('city').value,
                 email : document.getElementById('email').value,
-                productId,
             };
+            console.log(panier)
+            
 
             const options = {
                 method : 'POST',
-                body: JSON.stringify(informations),
+                body: JSON.stringify(panier),
                 headers : {
                     'content-type':'application/json'
                 }
@@ -80,11 +87,11 @@ if(localStorage.getItem('cartInfo') != null) {
             .then(res => console.log(res))
 
 
-            var userString = JSON.stringify(informations);
+            var userString = JSON.stringify(panier);
             localStorage.setItem('informations', userString);
-            console.log(informations);
+            
 
-            // location.href = 'thankyou.html'
+            location.href = 'thankyou.html'
 
         }
     }

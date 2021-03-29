@@ -71,7 +71,6 @@ if (window.location.href.includes('teddies')>0) {
           localStorage.setItem('cartInfo', '[]');
         }
 
-        
 
         var cartInfo = {
           name : urlTeddies.name,
@@ -81,23 +80,25 @@ if (window.location.href.includes('teddies')>0) {
           product_id : productId,
         }
         
+        //j'essaye de faire en sorte que les nouvelles infos écrasent les anciennes pour avoir un panier dynamique
         var newData = cartInfo;
 
         var oldData = JSON.parse(localStorage.getItem('cartInfo'));
-        oldData.push(newData);
-
+        
         console.log(oldData);
 
+        oldData.push(newData);
+
         localStorage.setItem('cartInfo', JSON.stringify(oldData));
-
-
+        
+        
 
         var popUpScreen = document.getElementById('popUp'); /* test pour  créer une fenêtre qui apparait après que le buton valider est été appuyé*/
 
         popUpScreen.innerHTML =(
           `
             <div id="boxCustom" class=" bg-red-600 w-80 p-4 border-black border-4 grid grid-flow-row justify-center z-10">
-              <h2 id="continue">Voulez-vous poursuivre votre achat ?</h2>
+              <h2 id="continue">Ajouter au panier ?</h2>
               <div id="btnCustom" class="grid grid-flow-col col-span-1 gap-3">
                 <button id="oui" class="border-black border-2">Oui</button>
                 <button id="non" class="border-black border-2">Non</button>
@@ -106,16 +107,18 @@ if (window.location.href.includes('teddies')>0) {
           `
         )
 
+
         const btnOui = document.getElementById('oui');
         const btnNon = document.getElementById('non');
 
         btnOui.onclick = () => {
           location.href = '/html-pages/cart.html'+'?Your cart'+' '+urlTeddies.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
-
+            
         }
 
         btnNon.onclick = () => {
           location.href = '/index.html';
+          localStorage.removeItem('cartInfo', JSON.stringify(oldData))
         }
 
         /*test fini*/
@@ -124,9 +127,13 @@ if (window.location.href.includes('teddies')>0) {
       };
   };
   
+  
   showUrlTeddies();
   
 };
+
+
+
 
 if (window.location.href.includes('cameras')>0) {
   const showUrlCameras = async () => {
