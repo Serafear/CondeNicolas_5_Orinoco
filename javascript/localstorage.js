@@ -1,24 +1,29 @@
 var orders = JSON.parse(localStorage.getItem('cartInfo'));
 console.log(orders);
 
+
+
 if(localStorage.getItem('cartInfo') != null) {
     document.getElementById('cartContain').innerHTML =(
         orders 
         .map(order => (
-        ` 
-            <ul id="cartList" class="grid grid-flow-col bg-red-600 gap-5 justify-evenly text-base">
-                <li id="cartName" class="w-14 pl-2">${order.name}</li>
-                <li id="cartDescription" class=" w-96 overflow-hidden whitespace-nowrap">${order.description}</li>
-                <li id="cartCustom" class="w-14">${order.custom}</li>
-                <li id="cartPrice" class ="w-14">${order.price}</li>
-                <div class="w-14 flex flex-row gap-5">
-                    <button id="clearStorage"><i class="fas fa-times"></i></button>
-                    <button id="toContact"><i class="fas fa-check"></i></button>
-                </div>
-            </ul>
-        `
-        ))
+             ` 
+                <ul id="cartList" class="grid grid-flow-col bg-red-600 gap-3 justify-evenly text-base">
+                    <li id="cartName" class=" pl-2">${order.name}</li>
+                    <li id="cartDescription" class=" overflow-hidden whitespace-nowrap">${order.description}</li>
+                    <li id="cartCustom" class="">${order.custom}</li>
+                    <li id="cartPrice" class ="">${order.price}</li>
+                    <div class="flex flex-row gap-1">
+                        <button id="clearStorage"><i class="fas fa-trash-alt"></i>Supprimer</button>
+                    
+                    </div>
+                </ul>
+             `
+            )
+        )
     )
+
+    
 
     const btnRemoveStorage = document.getElementById("clearStorage");
 
@@ -48,6 +53,9 @@ if(localStorage.getItem('cartInfo') != null) {
 
         formValidateBuy.onclick =() => {
             const url = 'http://localhost:3000/api/teddies/order'; //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? le /api est super important. 
+            const urlC = 'http://localhost:3000/api/cameras/order';
+            const urlF = 'http://localhost:3000/api/furniture/order';        
+   
 
             //construction de l'objet contact attendu par le backend. Voir le server du backend. 
             const panier = {
@@ -83,6 +91,14 @@ if(localStorage.getItem('cartInfo') != null) {
             };
 
             fetch(url, options)
+            .then(res => res.json())
+            .then(res => console.log(res))
+
+            fetch(urlC, options)
+            .then(res => res.json())
+            .then(res => console.log(res))
+
+            fetch(urlF, options)
             .then(res => res.json())
             .then(res => console.log(res))
 
