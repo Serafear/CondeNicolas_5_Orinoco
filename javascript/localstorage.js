@@ -8,7 +8,7 @@ if(localStorage.getItem('cartInfo') != null) {
         orders 
         .map(order => (
              ` 
-                <ul id="cartList" class="grid grid-flow-col bg-red-600 gap-3 justify-evenly text-base">
+                <ul id="cartList" class="grid grid-flow-col bg-red-600 gap-3 justify-evenly text-base" data-cart-Orders>
                     <li id="cartName" class=" pl-2">${order.name}</li>
                     <li id="cartDescription" class=" overflow-hidden whitespace-nowrap">${order.description}</li>
                     <li id="cartCustom" class="">${order.custom}</li>
@@ -26,11 +26,15 @@ if(localStorage.getItem('cartInfo') != null) {
     
 
     const btnRemoveStorage = document.getElementById("clearStorage");
+    
+    //ce code fonctionne un peu, le local storage vide l'élément sélectionné. Maintenant il faut que la page se refraichisse de manière dynamique également.
+    btnRemoveStorage.onclick = (index) => {
+        orders.splice(index,1);
+        localStorage.setItem('cartInfo', JSON.stringify(orders))
+        
+        
 
-    btnRemoveStorage.onclick = () => {
-        localStorage.removeItem('cartInfo');
-        localStorage.removeItem('informations');
-        location.href = '/index.html'
+
     }
     
     const btnToContact = document.getElementById("toContact");
