@@ -14,7 +14,7 @@ if(localStorage.getItem('cartInfo') != null) {
                     <li id="cartCustom" class="">${order.custom}</li>
                     <li id="cartPrice" class ="">${order.price}</li>
                     <div class="flex flex-row gap-1">
-                        <button id="clearStorage"><i class="fas fa-trash-alt"></i>Supprimer</button>
+                        <button id="clearStorage" class="clearStorage"><i class="fas fa-trash-alt"></i>Supprimer</button>
                     
                     </div>
                 </ul>
@@ -23,27 +23,45 @@ if(localStorage.getItem('cartInfo') != null) {
         )
     )
 
-    
+   
 
-    const btnRemoveStorage = document.getElementById("clearStorage");
+    const btnRemoveStorage = document.querySelectorAll(".clearStorage");
+    console.log(btnRemoveStorage);
     
+    //on crée la boucle parceque le map crée une buoucle du bouton. En réponse on crée une boucle pour appliquer l'effet onclick. 
+    for (i = 0; i<btnRemoveStorage.length; i++)
     //ce code fonctionne un peu, le local storage vide l'élément sélectionné. Maintenant il faut que la page se refraichisse de manière dynamique également.
-    btnRemoveStorage.onclick = (index) => {
+    btnRemoveStorage[i].onclick = (index) => { 
         orders.splice(index,1);
         localStorage.setItem('cartInfo', JSON.stringify(orders))
-        
-        
-
-
+        window.location.href = '/html-pages/cart.html';
+        console.log(btnRemoveStorage);
     }
     
+    //ici je crée la div pour le total à payer dynamique : si jamais il y avait des quantités : return accumulator + item.quantity * item.price; https://sebhastian.com/javascript-sum-array-objects/
+    let totalPrice = orders.reduce(function (accumulator, item) {
+        return accumulator + item.price;
+    }, 0);
+
+    const showTotalPrice = document.getElementById('totalPrice')
+
+    showTotalPrice.innerHTML = (
+        `
+          <span id = "showTotalPrice">total à payer ${totalPrice}</span>
+        `
+    )
+
+
+
+    //ici c'est le bouton valider. Des modifs doivent être fiates sur : rajouter validation sur le formulaire et regex
     const btnToContact = document.getElementById("toContact");
 
     btnToContact.onclick =() => {
         shippingAdress.innerHTML = (
             `
                 <h2 class=" row-span-2 col-span-2">Confirmez votre adresse de livraison</h2>
-                <input type="text" id="fname" name="fname" placeholder="firstname" class="border-black border-2">
+                
+                <input type="text" id="fname" placeholder="firstname" name="fname" class="border-black border-2">
                 <input type="text" id="lname" placeholder="lastname" name="lname" class="border-black border-2">
                 <input type="text" id="adress" class=" row-span-2 col-span-2 border-black border-2" placeholder="adress" name="adress">
                 <input type="text" id="city" placeholder="city" class="border-black border-2" name="city">
@@ -53,13 +71,39 @@ if(localStorage.getItem('cartInfo') != null) {
             `
 
         )
+        
+        //beginning validation
+        const cartForm = document.getElementById('shippingAdress');
+        const error = document.getElementById('error');
+        const firstName = document.getElementById('fname');
+
+        cartForm.addEventListener('submit',(e) => {
+            let messages = []
+            var regex = /^[a-zA-Z]+$/;
+            if(regex.test(firstName.value) == false){
+               messages.push("Le nom ne doit contenir que des lettres");
+    
+            }
+            if(firstName.value === '' || firstName.value == null){
+                messages.push('Nom requis')
+            }
+            if (messages.length > 0){
+                e.preventDefault()
+                error.innerText = messages.join(', ')
+            }
+            
+        })
+        //validation end
+
         const formValidateBuy = document.getElementById('formValidateBuy');
 
-        formValidateBuy.onclick =() => {
+        formValidateBuy.onclick = () => {
+            
             const url = 'http://localhost:3000/api/teddies/order'; //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? le /api est super important. 
             const urlC = 'http://localhost:3000/api/cameras/order';
             const urlF = 'http://localhost:3000/api/furniture/order';        
-   
+            
+            
 
             //construction de l'objet contact attendu par le backend. Voir le server du backend. 
             const panier = {
@@ -111,7 +155,7 @@ if(localStorage.getItem('cartInfo') != null) {
             localStorage.setItem('informations', userString);
             
 
-            location.href = 'thankyou.html'
+            //location.href = 'thankyou.html'
 
         }
     }

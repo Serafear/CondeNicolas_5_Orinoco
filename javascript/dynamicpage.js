@@ -117,6 +117,7 @@ if (window.location.href.includes('teddies')>0) {
 
           location.href = '/html-pages/cart.html'+'?Your cart'+' '+urlTeddies.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
             
+          
         }
 
         btnNon.onclick = () => {
