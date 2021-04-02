@@ -65,7 +65,7 @@ if(localStorage.getItem('cartInfo') != null) {
                 <input type="text" id="lname" placeholder="lastname" name="lname" class="border-black border-2">
                 <input type="text" id="adress" class=" row-span-2 col-span-2 border-black border-2" placeholder="adress" name="adress">
                 <input type="text" id="city" placeholder="city" class="border-black border-2" name="city">
-                <input type="text" id="email" placeholder="email" class="border-black border-2" name="email">
+                <input type="email" id="email" placeholder="email" class="border-black border-2" name="email">
                 <button id="formValidateBuy" class="border-black border-2 bg-green-500" type="submit">Valider</button>
                 
             `
@@ -76,17 +76,51 @@ if(localStorage.getItem('cartInfo') != null) {
         const cartForm = document.getElementById('shippingAdress');
         const error = document.getElementById('error');
         const firstName = document.getElementById('fname');
+        const lastName = document.getElementById('lname');
+        const adress = document.getElementById('adress');
+        const city = document.getElementById('city');
+        const email = document.getElementById('email');
 
         cartForm.addEventListener('submit',(e) => {
             let messages = []
             var regex = /^[a-zA-Z]+$/;
+            var regexAdress = /[0-9]+\s*([a-zA-Z]+\s*[a-zA-Z]+\s)*[0-9]*/;
+            var regexCity = /[0-9]\ ([A-Za-z]*)$/i;
+            var regexMail = /.+\@.+\..+/;
+            
+            
             if(regex.test(firstName.value) == false){
                messages.push("Le nom ne doit contenir que des lettres");
-    
             }
+            if(regex.test(lastName.value) == false){
+                messages.push("Le prénom ne doit contenir que des lettres");
+            }
+            if(regexAdress.test(adress.value) == false){
+                messages.push('adresse invalide')
+            }
+            if(regexCity.test(city.value) == false){
+                messages.push('adresse invalide')
+            }
+            if(regexMail.test(city.value) == false){
+                messages.push('email invalide')
+            }
+
             if(firstName.value === '' || firstName.value == null){
                 messages.push('Nom requis')
             }
+            if(lastName.value === '' ||lastName.value == null){
+                messages.push('prénom requis')
+            }
+            if(adress.value === '' ||adress.value == null){
+                messages.push('adresse requise')
+            }
+            if(city.value === '' ||city.value == null){
+                messages.push('adresse requise')
+            }
+            if(email.value === '' ||email.value == null){
+                messages.push('email requis')
+            }
+
             if (messages.length > 0){
                 e.preventDefault()
                 error.innerText = messages.join(', ')
