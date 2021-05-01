@@ -11,9 +11,31 @@
     background: linear-gradient(130deg,#C97A57,#9E63D0);
 }
 
-.container-3 {
+body {
+    background-color: #F3E9F1;
+}
+
+.container-2 {
+    background-color: #A74F72;
+}
+.teddybear {
     background-color: #b48395;
 }
+
+.container-3 {
+    background-color: #A74F72;
+}
+.cameras {
+    background-color: #b48395;
+}
+
+.container-4 {
+    background-color: #A74F72;
+}
+.furnitures {
+    background-color: #b48395;
+}
+
 .slider{
     display: none;
 }

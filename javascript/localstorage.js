@@ -86,7 +86,7 @@ if(localStorage.getItem('cartInfo') != null) {
             var regex = /^[a-zA-Z]+$/;
             var regexAdress = /[0-9]+\s*([a-zA-Z]+\s*[a-zA-Z]+\s)*[0-9]*/;
             var regexCity = /[0-9]\ ([A-Za-z]*)$/i;
-            var regexMail = /.+\@.+\..+/;
+            var regexMail = /^([a-z0-9_\.-]+\@[\da-z\.-]+\.[a-z\.]{2,6})$/gm;
             
             
             if(regex.test(firstName.value) == false){
@@ -99,9 +99,9 @@ if(localStorage.getItem('cartInfo') != null) {
                 messages.push('adresse invalide')
             }
             if(regexCity.test(city.value) == false){
-                messages.push('adresse invalide')
+                messages.push('ville invalide')
             }
-            if(regexMail.test(city.value) == false){
+            if(regexMail.test(email.value) == false){
                 messages.push('email invalide')
             }
 
@@ -125,6 +125,7 @@ if(localStorage.getItem('cartInfo') != null) {
                 e.preventDefault()
                 error.innerText = messages.join(', ')
             }
+
             
         })
         //validation end
@@ -137,7 +138,7 @@ if(localStorage.getItem('cartInfo') != null) {
             const urlC = 'http://localhost:3000/api/cameras/order';
             const urlF = 'http://localhost:3000/api/furniture/order';        
             
-            
+           
 
             //construction de l'objet contact attendu par le backend. Voir le server du backend. 
             const panier = {
@@ -152,7 +153,6 @@ if(localStorage.getItem('cartInfo') != null) {
                 }
             )
 
-            
 
             panier.contact = {
                 firstName : document.getElementById('fname').value, /*pour que l'élément s'affiche dans lapage thankyou, le .value est indispensable . Si jamais ça ne marche pas, essayer de mettre firstName entre guillemets */
@@ -171,7 +171,8 @@ if(localStorage.getItem('cartInfo') != null) {
                     'content-type':'application/json'
                 }
             };
-
+            
+            //le fetch recupère le numéro de commande ?
             fetch(url, options)
             .then(res => res.json())
             .then(res => console.log(res))
@@ -188,7 +189,7 @@ if(localStorage.getItem('cartInfo') != null) {
             var userString = JSON.stringify(panier);
             localStorage.setItem('informations', userString);
             
-
+            //voir que le numéro de commande est recupéré (ici appelé le order pour recupérer cette information, au lieu de /id c'est /order)
             //location.href = 'thankyou.html'
 
         }
