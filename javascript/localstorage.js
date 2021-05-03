@@ -130,15 +130,16 @@ if(localStorage.getItem('cartInfo') != null) {
         })
         //validation end
 
-        const formValidateBuy = document.getElementById('formValidateBuy');
+        
 
-        formValidateBuy.onclick = () => {
+        document.getElementById('formValidateBuy').addEventListener("click", function(event) {
             
             const url = 'http://localhost:3000/api/teddies/order'; //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? le /api est super important. 
             const urlC = 'http://localhost:3000/api/cameras/order';
             const urlF = 'http://localhost:3000/api/furniture/order';        
             
-           
+            //ce prevent default permet de stopper le chargement de la page au submit pour garder la reponse du serveur dont le numéro de commande
+            event.preventDefault()
 
             //construction de l'objet contact attendu par le backend. Voir le server du backend. 
             const panier = {
@@ -172,10 +173,14 @@ if(localStorage.getItem('cartInfo') != null) {
                 }
             };
             
-            //le fetch recupère le numéro de commande ?
+            //ce fecth est le post des informations du formulaire au serveur : je post le contenu de options à l'url
             fetch(url, options)
-            .then(res => res.json())
-            .then(res => console.log(res))
+            .then(res => res.json())  //équivalent à .then(response =>response.json())
+            .then(data => {
+                console.log(data);
+                const orderId = data.orderId;
+                localStorage.setItem('orderId', orderId);
+            });
 
             fetch(urlC, options)
             .then(res => res.json())
@@ -185,14 +190,19 @@ if(localStorage.getItem('cartInfo') != null) {
             .then(res => res.json())
             .then(res => console.log(res))
 
+            
 
             var userString = JSON.stringify(panier);
             localStorage.setItem('informations', userString);
+
+            
+
+           
             
             //voir que le numéro de commande est recupéré (ici appelé le order pour recupérer cette information, au lieu de /id c'est /order)
             //location.href = 'thankyou.html'
 
-        }
+        });
     }
 
 
