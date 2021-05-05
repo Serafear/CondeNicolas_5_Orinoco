@@ -52,6 +52,18 @@ body {
     border-radius: 10%;
 }
 
+#cartList {
+    background-color: #A74F72;
+    color: white;
+}
+.trash {
+    color: black;
+    margin-top: 0.25em;
+}
+.totalPrice {
+    background-color: #60514E;
+    color: #D7D1C6;
+}
 
 
 

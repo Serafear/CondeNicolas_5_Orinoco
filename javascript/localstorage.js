@@ -8,13 +8,13 @@ if(localStorage.getItem('cartInfo') != null) {
         orders 
         .map(order => (
              ` 
-                <ul id="cartList" class="grid grid-flow-col bg-red-600 gap-3 justify-evenly text-base" data-cart-Orders>
+                <ul id="cartList" class="grid grid-flow-col bg-red-600 gap-3 justify-evenly text-base p-4" data-cart-Orders>
                     <li id="cartName" class=" pl-2">${order.name}</li>
-                    <li id="cartDescription" class=" overflow-hidden whitespace-nowrap">${order.description}</li>
+                    <li id="cartDescription" class=" overflow-hidden whitespace-nowrap md:w-72">${order.description}</li>
                     <li id="cartCustom" class="">${order.custom}</li>
                     <li id="cartPrice" class ="">${order.price}</li>
                     <div class="flex flex-row gap-1">
-                        <button id="clearStorage" class="clearStorage"><i class="fas fa-trash-alt"></i>Supprimer</button>
+                        <button id="clearStorage" class="clearStorage flex flex-row gap-2"><i class=" trash fas fa-trash-alt"></i>Supprimer</button>
                     
                     </div>
                 </ul>
@@ -47,7 +47,7 @@ if(localStorage.getItem('cartInfo') != null) {
 
     showTotalPrice.innerHTML = (
         `
-          <span id = "showTotalPrice">total à payer ${totalPrice}</span>
+          <span id = "showTotalPrice" class= " totalPrice p-2">Total à payer : ${totalPrice}</span>
         `
     )
 
@@ -126,20 +126,21 @@ if(localStorage.getItem('cartInfo') != null) {
                 error.innerText = messages.join(', ')
             }
 
-            
-        })
-        //validation end
+            //mise en place des conditions pour le changement de page
+            if (messages.length <= 0||messages.length == null||messages.length ===''){
+                e.preventDefault()
+                window.location.href = 'thankyou.html'
+            }
 
-        
+            //validation end
 
-        document.getElementById('formValidateBuy').addEventListener("click", function(event) {
-            
+
             const url = 'http://localhost:3000/api/teddies/order'; //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? le /api est super important. 
             const urlC = 'http://localhost:3000/api/cameras/order';
             const urlF = 'http://localhost:3000/api/furniture/order';        
             
             //ce prevent default permet de stopper le chargement de la page au submit pour garder la reponse du serveur dont le numéro de commande
-            event.preventDefault()
+           
 
             //construction de l'objet contact attendu par le backend. Voir le server du backend. 
             const panier = {
@@ -177,7 +178,7 @@ if(localStorage.getItem('cartInfo') != null) {
             fetch(url, options)
             .then(res => res.json())  //équivalent à .then(response =>response.json())
             .then(data => {
-                console.log(data);
+                console.log(data);  //le numéro de commande est recupéré ici dans data, c'est le orderId. 
                 const orderId = data.orderId;
                 localStorage.setItem('orderId', orderId);
             });
@@ -195,18 +196,15 @@ if(localStorage.getItem('cartInfo') != null) {
             var userString = JSON.stringify(panier);
             localStorage.setItem('informations', userString);
 
-            
-
-           
-            
-            //voir que le numéro de commande est recupéré (ici appelé le order pour recupérer cette information, au lieu de /id c'est /order)
-            //location.href = 'thankyou.html'
 
         });
+        }   
     }
+ 
 
+        
 
-}
+       
 
     
 
