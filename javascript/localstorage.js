@@ -185,11 +185,18 @@ if(localStorage.getItem('cartInfo') != null) {
 
             fetch(urlC, options)
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(data => {
+                console.log(data);  
+                const orderId = data.orderId;
+                localStorage.setItem('orderId', orderId);
+            });
 
             fetch(urlF, options)
             .then(res => res.json())
-            .then(res => console.log(res))
+            .then(data => {
+                console.log(data);  
+                localStorage.setItem('orderId', orderId);
+            });
 
             
 
