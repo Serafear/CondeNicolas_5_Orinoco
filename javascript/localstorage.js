@@ -126,15 +126,11 @@ if(localStorage.getItem('cartInfo') != null) {
                 error.innerText = messages.join(', ')
             }
 
-            //mise en place des conditions pour le changement de page
-            if (messages.length <= 0||messages.length == null||messages.length ===''){
-                e.preventDefault()
-                window.location.href = 'thankyou.html'
-            }
+            
 
             //validation end
 
-
+            
             const url = 'http://localhost:3000/api/teddies/order'; //cet order si est différent de la var order, car elle représente l'adresse sur laquelle envoyer les données ou plutôt le code d'exécution de l'envoi ? le /api est super important. 
             const urlC = 'http://localhost:3000/api/cameras/order';
             const urlF = 'http://localhost:3000/api/furniture/order';        
@@ -179,7 +175,7 @@ if(localStorage.getItem('cartInfo') != null) {
             .then(res => res.json())  //équivalent à .then(response =>response.json())
             .then(data => {
                 console.log(data);  //le numéro de commande est recupéré ici dans data, c'est le orderId. 
-                const orderId = data.orderId;
+                let orderId = data.orderId;
                 localStorage.setItem('orderId', orderId);
             });
 
@@ -187,21 +183,40 @@ if(localStorage.getItem('cartInfo') != null) {
             .then(res => res.json())
             .then(data => {
                 console.log(data);  
-                const orderId = data.orderId;
-                localStorage.setItem('orderId', orderId);
+                let orderId2 = data.orderId;
+                localStorage.setItem('orderId2', orderId2);
             });
 
             fetch(urlF, options)
             .then(res => res.json())
             .then(data => {
                 console.log(data);  
-                localStorage.setItem('orderId', orderId);
+                let orderId3 = data.orderId;
+                localStorage.setItem('orderId3', orderId3);
             });
 
             
 
             var userString = JSON.stringify(panier);
             localStorage.setItem('informations', userString);
+
+            //mise en place des conditions pour le changement de page
+            if (messages.length <= 0||messages.length == null||messages.length ===''){
+                e.preventDefault();
+                setTimeout(function(){
+                    if(localStorage.getItem('orderId') != null) {
+                        window.location.href = 'thankyou.html'
+                        if(localStorage.getItem('orderId2') != null) {
+                            window.location.href = 'thankyou.html'
+                            if(localStorage.getItem('orderId3') != null) {
+                                window.location.href = 'thankyou.html'
+                                
+                            }
+                        }
+                    }
+                }, 2000)
+                
+            }
 
 
         });
