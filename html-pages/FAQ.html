@@ -1,117 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="description" content="">
-        <meta name="keywords" content="site web, e-commerce, camera">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="site web, e-commerce, camera" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
 
-        <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
 
-        <title>Orinoco</title>
+    <title>Orinoco</title>
 
-        <script src="https://kit.fontawesome.com/e56d892efa.js" crossorigin="anonymous"></script>
-        <script src="./javascript/camera-api.json" crossorigin="anonymous"></script> <!--Utile ? Je le verai après le cours sur les API-->
-    </head>
+    <script
+      src="https://kit.fontawesome.com/e56d892efa.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./javascript/camera-api.json" crossorigin="anonymous"></script>
+    <!--Utile ? Je le verai après le cours sur les API-->
+  </head>
 
-    <body>
-        <!--Ici on utilisera le modèle d'Orinico vu dans le document. On utilisera l'outil d'inspection pour trouver si l'image a un lien utilisable-->
-        <header>
-            <div id="fixed-nav-bar">  <!--Ici on a le conteneur pour toute la barre du haut qui sera fixed. L'exemple est prit sur Cdiscount-->
-                <div class="logo-orinoco">
-                    <a href="index.html">
-                        <img style="-webkit-user-select: none;margin: auto;cursor: zoom-in;" src="https://user.oc-static.com/upload/2019/09/04/15675819263013_image1.png" alt="logo Orinoco" width="360" height="162">
-                    </a> 
-                </div>
-
-                <nav>
-                    <div class="search-bar">  <!--Ici on aura la barre de recherche avec son button-->
-                        <input type="text" placeholder="Cherchez votre produit">
-                        <button type="submit" class="search-button"> <!--L'icone sera incorporée dans la barre de recherche via le css ou le js ?-->
-                            <i class="fas fa-search"></i>
-                        </button>   
-                    </div>
-    
-                    <div class="nav-options">
-                        <div class="thecontact">
-                            <a href="/html-pages/Contact.html">Contact</a>
-                        </div>
-                        
-                        <div class="font-shopping-cart">
-                            <a href="/html-pages/cart.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Mon panier
-                            </a>
-                            <div id="cartNumber"></div>
-                        </div>
-    
-                        <div class="theFAQ">
-                            <a href="/html-pages/FAQ.html">FAQ</a>
-                        </div>
-    
-                        <div class="Myaccount">
-                            <a href="/html-pages/Myaccount.html">Mon compte</a>
-                        </div>
-                    </div> 
-                </nav>   
-            </div>
-        </header>
-    
-        <!--Bloc Bannière déroulante-->
-        <div id="banner-moving">
-            <div class="banner-1">
-                <div class="center">
-                    <h3>Caméra</h3>
-                </div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <button>cliquer ici</button>
-            </div>
-            <div class="banner-2">
-                <div class="center">
-                    <h3>Ours en peluche</h3>
-                </div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <button>cliquer ici</button>
-            </div>
-            <div class="banner-3">
-                <div class="center">
-                    <h3>Meubles</h3>
-                </div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <button>cliquer ici</button>
-            </div>
+  <body>
+    <!--Ici on utilisera le modèle d'Orinico vu dans le document. On utilisera l'outil d'inspection pour trouver si l'image a un lien utilisable-->
+    <header>
+      <div id="fixed-nav-bar">
+        <!--Ici on a le conteneur pour toute la barre du haut qui sera fixed. L'exemple est prit sur Cdiscount-->
+        <div class="logo-orinoco">
+          <a href="index.html">
+            <img
+              style="-webkit-user-select: none; margin: auto; cursor: zoom-in"
+              src="https://user.oc-static.com/upload/2019/09/04/15675819263013_image1.png"
+              alt="logo Orinoco"
+              width="360"
+              height="162"
+            />
+          </a>
         </div>
 
-        <!--Bloc produits-->
-        <div id="Products-list">
-            <div class="products-list">
+        <nav>
+          <div class="search-bar">
+            <!--Ici on aura la barre de recherche avec son button-->
+            <input type="text" placeholder="Cherchez votre produit" />
+            <button type="submit" class="search-button">
+              <!--L'icone sera incorporée dans la barre de recherche via le css ou le js ?-->
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+
+          <div class="nav-options">
+            <div class="thecontact">
+              <a href="/html-pages/Contact.html">Contact</a>
             </div>
-        </div>  
-        
-        <!--Bloc footer-->
-        <footer class="bottom-columns">
-            <div class="twitter">
-                <a href="">
-                    <i class="fab fa-twitter"></i>
-                </a>
+
+            <div class="font-shopping-cart">
+              <a href="/html-pages/cart.html">
+                <i class="fas fa-shopping-cart"></i>
+                Mon panier
+              </a>
+              <div id="cartNumber"></div>
             </div>
-            <div class="facebook">
-                <a href="">
-                    <i class="fab fa-facebook"></i>
-                </a>
+
+            <div class="theFAQ">
+              <a href="/html-pages/FAQ.html">FAQ</a>
             </div>
-            <div class="instagram">
-                <a href="">
-                    <i class="fab fa-instagram"></i>
-                </a>
+
+            <div class="Myaccount">
+              <a href="/html-pages/Myaccount.html">Mon compte</a>
             </div>
-            <div class="annuaires"></div>
-        </footer>
-    </body>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!--Bloc Bannière déroulante-->
+    <div id="banner-moving">
+      <div class="banner-1">
+        <div class="center">
+          <h3>Caméra</h3>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <button>cliquer ici</button>
+      </div>
+      <div class="banner-2">
+        <div class="center">
+          <h3>Ours en peluche</h3>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <button>cliquer ici</button>
+      </div>
+      <div class="banner-3">
+        <div class="center">
+          <h3>Meubles</h3>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <button>cliquer ici</button>
+      </div>
+    </div>
+
+    <!--Bloc produits-->
+    <div id="Products-list">
+      <div class="products-list"></div>
+    </div>
+
+    <!--Bloc footer-->
+    <footer class="bottom-columns">
+      <div class="twitter">
+        <a href="">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </div>
+      <div class="facebook">
+        <a href="">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </div>
+      <div class="instagram">
+        <a href="">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <div class="annuaires"></div>
+    </footer>
+  </body>
 </html>

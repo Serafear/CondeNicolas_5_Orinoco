@@ -3,7 +3,6 @@ let urlTeddies;
 let urlCameras;
 let urlFurnitures;
 
-
 let productId = urlParams.get("productId");
 console.log(productId);
 
@@ -28,12 +27,11 @@ const fetchUrlFurnitures = async () => {
   console.log(urlFurnitures);
 };
 
-
-if (window.location.href.includes('teddies')>0) {
+if (window.location.href.includes("teddies") > 0) {
   const showUrlTeddies = async () => {
     await fetchUrlTeddies();
-  
-    dynamic.innerHTML = (`
+
+    dynamic.innerHTML = `
         <img id="productPhoto" class="bg-red-700 p-6 row-span-2 col-span-2" src="${urlTeddies.imageUrl}"/>
         <h3 id="productName" class="bg-yellow-600 p-6 col-span-1">${urlTeddies.name}</h3>
             
@@ -46,7 +44,7 @@ if (window.location.href.includes('teddies')>0) {
         <h4 id="productPrice" class="bg-blue-700 p-6 col-span-2">${urlTeddies.price}</h4>
         <div class="flex justify-center">
           <button id="btnInputCustom" class="btnTest bg-yellow-500 justify-center w-20 h-10">Valider</button>
-        </div>        `);
+        </div>        `;
     let teddyColors = urlTeddies.colors;
     scrollCustom.innerHTML = teddyColors
       .map(
@@ -56,21 +54,15 @@ if (window.location.href.includes('teddies')>0) {
           `
       )
       .join("");
-    
-      
-      const btnInputCustom = document.getElementById("btnInputCustom");
-      
 
-      btnInputCustom.onclick = () => {
+    const btnInputCustom = document.getElementById("btnInputCustom");
 
-        
-        
-        
+    btnInputCustom.onclick = () => {
+      var popUpScreen = document.getElementById(
+        "popUp"
+      ); /* test pour  créer une fenêtre qui apparait après que le buton valider est été appuyé*/
 
-        var popUpScreen = document.getElementById('popUp'); /* test pour  créer une fenêtre qui apparait après que le buton valider est été appuyé*/
-
-        popUpScreen.innerHTML =(
-          `
+      popUpScreen.innerHTML = `
             <div id="boxCustom" class=" bg-red-600 w-80 p-4 border-black border-4 grid grid-flow-row justify-center z-10">
               <h2 id="continue">Ajouter au panier ?</h2>
               <div id="btnCustom" class="grid grid-flow-col col-span-1 gap-3">
@@ -78,72 +70,65 @@ if (window.location.href.includes('teddies')>0) {
                 <button id="non" class="border-black border-2">Non</button>
               </div>
             </div>  
-          `
-        )
+          `;
 
+      const btnOui = document.getElementById("oui");
+      const btnNon = document.getElementById("non");
 
-        const btnOui = document.getElementById('oui');
-        const btnNon = document.getElementById('non');
+      btnOui.onclick = () => {
+        var selChoice = document.getElementById(
+          "scrollCustom"
+        ); /*ici la recherche se fait sur le clic. Dans la version précédente: code hors du btn, la page se reloadait à chaque fois et recupérait la première valeur tan. ici le bouton recupère les infos du select*/
+        var customChoice = selChoice.options[selChoice.selectedIndex].text;
 
-        btnOui.onclick = () => {
-
-          var selChoice = document.getElementById("scrollCustom");   /*ici la recherche se fait sur le clic. Dans la version précédente: code hors du btn, la page se reloadait à chaque fois et recupérait la première valeur tan. ici le bouton recupère les infos du select*/
-          var customChoice = selChoice.options[selChoice.selectedIndex].text;
-       
-          //si le local storage est vide alors on crée un array
-          if(localStorage.getItem('cartInfo') == null) {
-            localStorage.setItem('cartInfo', '[]');
-          }
-  
-  
-          var cartInfo = {
-            name : urlTeddies.name,
-            description : urlTeddies.description,
-            price : urlTeddies.price,
-            custom : customChoice,
-            product_id : productId,
-          }
-          
-          //j'essaye de faire en sorte que les nouvelles infos écrasent les anciennes pour avoir un panier dynamique
-          var newData = cartInfo;
-  
-          var oldData = JSON.parse(localStorage.getItem('cartInfo'));
-          
-          console.log(oldData);
-  
-          oldData.push(newData);
-  
-          localStorage.setItem('cartInfo', JSON.stringify(oldData));
-
-          location.href = '/html-pages/cart.html'+'?Your cart'+' '+urlTeddies.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
-            
-          
+        //si le local storage est vide alors on crée un array
+        if (localStorage.getItem("cartInfo") == null) {
+          localStorage.setItem("cartInfo", "[]");
         }
 
-        btnNon.onclick = () => {
-          var hide = document.getElementById('boxCustom');
-          hide.style.display = "none";
-        }
+        var cartInfo = {
+          name: urlTeddies.name,
+          description: urlTeddies.description,
+          price: urlTeddies.price,
+          custom: customChoice,
+          product_id: productId,
+        };
 
-        /*test fini*/
+        //j'essaye de faire en sorte que les nouvelles infos écrasent les anciennes pour avoir un panier dynamique
+        var newData = cartInfo;
 
-        
+        var oldData = JSON.parse(localStorage.getItem("cartInfo"));
+
+        console.log(oldData);
+
+        oldData.push(newData);
+
+        localStorage.setItem("cartInfo", JSON.stringify(oldData));
+
+        location.href =
+          "/html-pages/cart.html" +
+          "?Your cart" +
+          " " +
+          urlTeddies.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
       };
+
+      btnNon.onclick = () => {
+        var hide = document.getElementById("boxCustom");
+        hide.style.display = "none";
+      };
+
+      /*test fini*/
+    };
   };
-  
-  
+
   showUrlTeddies();
-  
-};
+}
 
-
-
-
-if (window.location.href.includes('cameras')>0) {
+if (window.location.href.includes("cameras") > 0) {
   const showUrlCameras = async () => {
     await fetchUrlCameras();
-  
-    dynamic.innerHTML = (`
+
+    dynamic.innerHTML = `
         <img id="productPhoto" class="bg-red-700 p-6 row-span-2 col-span-2" src="${urlCameras.imageUrl}"/>
         <h3 id="productName" class="bg-yellow-600 p-6 col-span-1">${urlCameras.name}</h3>
             
@@ -154,7 +139,7 @@ if (window.location.href.includes('cameras')>0) {
         <h4 id="productPrice" class="bg-blue-700 p-6 col-span-2">${urlCameras.price}</h4>
         <div class="flex justify-center">
           <button id="btnInputCustom" class="btnTest bg-yellow-500 justify-center w-20 h-10">Valider</button>
-        </div>        `);
+        </div>        `;
     let cameraLenses = urlCameras.lenses;
     scrollCustom.innerHTML = cameraLenses
       .map(
@@ -165,17 +150,12 @@ if (window.location.href.includes('cameras')>0) {
       )
       .join("");
 
+    btnInputCustom.onclick = () => {
+      var popUpScreen = document.getElementById(
+        "popUp"
+      ); /* test pour  créer une fenêtre qui apparait après que le buton valider est été appuyé*/
 
-      btnInputCustom.onclick = () => {
-
-        
-        
-        
-
-        var popUpScreen = document.getElementById('popUp'); /* test pour  créer une fenêtre qui apparait après que le buton valider est été appuyé*/
-
-        popUpScreen.innerHTML =(
-          `
+      popUpScreen.innerHTML = `
             <div id="boxCustom" class=" bg-red-600 w-80 p-4 border-black border-4 grid grid-flow-row justify-center z-10">
               <h2 id="continue">Ajouter au panier ?</h2>
               <div id="btnCustom" class="grid grid-flow-col col-span-1 gap-3">
@@ -183,66 +163,63 @@ if (window.location.href.includes('cameras')>0) {
                 <button id="non" class="border-black border-2">Non</button>
               </div>
             </div>  
-          `
-        )
+          `;
 
+      const btnOui = document.getElementById("oui");
+      const btnNon = document.getElementById("non");
 
-        const btnOui = document.getElementById('oui');
-        const btnNon = document.getElementById('non');
+      btnOui.onclick = () => {
+        var selChoice = document.getElementById(
+          "scrollCustom"
+        ); /*ici la recherche se fait sur le clic. Dans la version précédente: code hors du btn, la page se reloadait à chaque fois et recupérait la première valeur tan. ici le bouton recupère les infos du select*/
+        var customChoice = selChoice.options[selChoice.selectedIndex].text;
 
-        btnOui.onclick = () => {
-
-          var selChoice = document.getElementById("scrollCustom");   /*ici la recherche se fait sur le clic. Dans la version précédente: code hors du btn, la page se reloadait à chaque fois et recupérait la première valeur tan. ici le bouton recupère les infos du select*/
-          var customChoice = selChoice.options[selChoice.selectedIndex].text;
-       
-          //si le local storage est vide alors on crée un array
-          if(localStorage.getItem('cartInfo') == null) {
-            localStorage.setItem('cartInfo', '[]');
-          }
-  
-  
-          var cartInfo = {
-            name : urlCameras.name,
-            description : urlCameras.description,
-            price : urlCameras.price,
-            custom : customChoice,
-            product_id : productId,
-          }
-          
-          //j'essaye de faire en sorte que les nouvelles infos écrasent les anciennes pour avoir un panier dynamique
-          var newData = cartInfo;
-  
-          var oldData = JSON.parse(localStorage.getItem('cartInfo'));
-          
-          console.log(oldData);
-  
-          oldData.push(newData);
-  
-          localStorage.setItem('cartInfo', JSON.stringify(oldData));
-
-          location.href = '/html-pages/cart.html'+'?Your cart'+' '+urlCameras.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
-            
+        //si le local storage est vide alors on crée un array
+        if (localStorage.getItem("cartInfo") == null) {
+          localStorage.setItem("cartInfo", "[]");
         }
 
-        btnNon.onclick = () => {
-          var hide = document.getElementById('boxCustom');
-          hide.style.display = "none";
-        }
+        var cartInfo = {
+          name: urlCameras.name,
+          description: urlCameras.description,
+          price: urlCameras.price,
+          custom: customChoice,
+          product_id: productId,
+        };
+
+        //j'essaye de faire en sorte que les nouvelles infos écrasent les anciennes pour avoir un panier dynamique
+        var newData = cartInfo;
+
+        var oldData = JSON.parse(localStorage.getItem("cartInfo"));
+
+        console.log(oldData);
+
+        oldData.push(newData);
+
+        localStorage.setItem("cartInfo", JSON.stringify(oldData));
+
+        location.href =
+          "/html-pages/cart.html" +
+          "?Your cart" +
+          " " +
+          urlCameras.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
+      };
+
+      btnNon.onclick = () => {
+        var hide = document.getElementById("boxCustom");
+        hide.style.display = "none";
+      };
     };
   };
 
-  
-  
   showUrlCameras();
+}
 
-  
-};
-
-if (window.location.href.includes('furnitures')>0) {
+if (window.location.href.includes("furnitures") > 0) {
   const showUrlFurnitures = async () => {
     await fetchUrlFurnitures();
-  
-    dynamic.innerHTML = (`
+
+    dynamic.innerHTML = `
         <img id="productPhoto" class="bg-red-700 p-6 row-span-2" src="${urlFurnitures.imageUrl}"/>
         <h3 id="productName" class="bg-yellow-600 p-6 col-span-2">${urlFurnitures.name}</h3>
             
@@ -253,7 +230,7 @@ if (window.location.href.includes('furnitures')>0) {
         <h4 id="productPrice" class="bg-blue-700 p-6 col-span-2">${urlFurnitures.price}</h4>
         <div class="flex justify-center">
           <button id="btnInputCustom" class="btnTest bg-yellow-500 justify-center w-20 h-10">Valider</button>
-        </div>        `);
+        </div>        `;
     let furnituresVarnish = urlFurnitures.varnish;
     scrollCustom.innerHTML = furnituresVarnish
       .map(
@@ -264,16 +241,12 @@ if (window.location.href.includes('furnitures')>0) {
       )
       .join("");
 
-      btnInputCustom.onclick = () => {
+    btnInputCustom.onclick = () => {
+      var popUpScreen = document.getElementById(
+        "popUp"
+      ); /* test pour  créer une fenêtre qui apparait après que le buton valider est été appuyé*/
 
-        
-        
-        
-
-        var popUpScreen = document.getElementById('popUp'); /* test pour  créer une fenêtre qui apparait après que le buton valider est été appuyé*/
-
-        popUpScreen.innerHTML =(
-          `
+      popUpScreen.innerHTML = `
             <div id="boxCustom" class=" bg-red-600 w-80 p-4 border-black border-4 grid grid-flow-row justify-center z-10">
               <h2 id="continue">Ajouter au panier ?</h2>
               <div id="btnCustom" class="grid grid-flow-col col-span-1 gap-3">
@@ -281,62 +254,54 @@ if (window.location.href.includes('furnitures')>0) {
                 <button id="non" class="border-black border-2">Non</button>
               </div>
             </div>  
-          `
-        )
+          `;
 
+      const btnOui = document.getElementById("oui");
+      const btnNon = document.getElementById("non");
 
-        const btnOui = document.getElementById('oui');
-        const btnNon = document.getElementById('non');
+      btnOui.onclick = () => {
+        var selChoice = document.getElementById(
+          "scrollCustom"
+        ); /*ici la recherche se fait sur le clic. Dans la version précédente: code hors du btn, la page se reloadait à chaque fois et recupérait la première valeur tan. ici le bouton recupère les infos du select*/
+        var customChoice = selChoice.options[selChoice.selectedIndex].text;
 
-        btnOui.onclick = () => {
-
-          var selChoice = document.getElementById("scrollCustom");   /*ici la recherche se fait sur le clic. Dans la version précédente: code hors du btn, la page se reloadait à chaque fois et recupérait la première valeur tan. ici le bouton recupère les infos du select*/
-          var customChoice = selChoice.options[selChoice.selectedIndex].text;
-       
-          //si le local storage est vide alors on crée un array
-          if(localStorage.getItem('cartInfo') == null) {
-            localStorage.setItem('cartInfo', '[]');
-          }
-  
-  
-          var cartInfo = {
-            name : urlFurnitures.name,
-            description : urlFurnitures.description,
-            price : urlFurnitures.price,
-            custom : customChoice,
-            product_id : productId,
-          }
-          
-          //j'essaye de faire en sorte que les nouvelles infos écrasent les anciennes pour avoir un panier dynamique
-          var newData = cartInfo;
-  
-          var oldData = JSON.parse(localStorage.getItem('cartInfo'));
-          
-          console.log(oldData);
-  
-          oldData.push(newData);
-  
-          localStorage.setItem('cartInfo', JSON.stringify(oldData));
-
-          location.href = '/html-pages/cart.html'+'?Your cart'+' '+urlFurnitures.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
-            
+        //si le local storage est vide alors on crée un array
+        if (localStorage.getItem("cartInfo") == null) {
+          localStorage.setItem("cartInfo", "[]");
         }
 
-        btnNon.onclick = () => {
-          var hide = document.getElementById('boxCustom');
-          hide.style.display = "none";
-        }
+        var cartInfo = {
+          name: urlFurnitures.name,
+          description: urlFurnitures.description,
+          price: urlFurnitures.price,
+          custom: customChoice,
+          product_id: productId,
+        };
+
+        //j'essaye de faire en sorte que les nouvelles infos écrasent les anciennes pour avoir un panier dynamique
+        var newData = cartInfo;
+
+        var oldData = JSON.parse(localStorage.getItem("cartInfo"));
+
+        console.log(oldData);
+
+        oldData.push(newData);
+
+        localStorage.setItem("cartInfo", JSON.stringify(oldData));
+
+        location.href =
+          "/html-pages/cart.html" +
+          "?Your cart" +
+          " " +
+          urlFurnitures.name; /*the black space give a %20 in the url. i doont know what it is used for but i find it more ergonomic ? for now */
+      };
+
+      btnNon.onclick = () => {
+        var hide = document.getElementById("boxCustom");
+        hide.style.display = "none";
+      };
     };
   };
-  
+
   showUrlFurnitures();
-  
-};
-
-
-
-
-
-  
-
-
+}

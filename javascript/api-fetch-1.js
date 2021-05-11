@@ -1,23 +1,20 @@
-
-
 //cette partie concerne le fetch de l'API teddies
 let teddies;
 
-
-const fetchTeddies = async() => {
-  teddies = await fetch('http://localhost:3000/api/teddies').then(res => res.json());
+const fetchTeddies = async () => {
+  teddies = await fetch("http://localhost:3000/api/teddies").then((res) =>
+    res.json()
+  );
   console.log(teddies);
-  
 };
 
-
-const showTeddies = async() => {
+const showTeddies = async () => {
   await fetchTeddies();
 
-  allTeddies.innerHTML = (
-    teddies
-    .map(teddy =>(
-      `
+  allTeddies.innerHTML = teddies
+    .map(
+      (teddy) =>
+        `
       <li class="teddy-item grid grid-flow-row">
           <img class="teddy-photo" src="${teddy.imageUrl}"/>
           <h3 class="teddy-name">${teddy.name}</h3>
@@ -29,30 +26,29 @@ const showTeddies = async() => {
       </li>
       
       `
-      
-    )).join('')
-  );
-}
+    )
+    .join("");
+};
 
 showTeddies();
 
-
-
-//api call caméras 
+//api call caméras
 let cameras;
 
-const fetchCameras = async() => {
-  cameras = await fetch('http://localhost:3000/api/cameras').then(res => res.json());
+const fetchCameras = async () => {
+  cameras = await fetch("http://localhost:3000/api/cameras").then((res) =>
+    res.json()
+  );
   console.log(cameras);
 };
 
-const showCameras = async() => {
+const showCameras = async () => {
   await fetchCameras();
 
-  allCameras.innerHTML = (
-    cameras
-    .map(camera =>(
-      `
+  allCameras.innerHTML = cameras
+    .map(
+      (camera) =>
+        `
       <li class="camera-item">
           <img class="camera-photo" src="${camera.imageUrl}"/>
           <h3 class="camera-name">${camera.name}</h3>
@@ -64,27 +60,29 @@ const showCameras = async() => {
       </li>
       
       `
-    )).join('')
-    );
+    )
+    .join("");
 };
 
 showCameras();
-     
+
 //api call meubles
 let furnitures;
 
-const fetchFurnitures = async() => {
-  furnitures = await fetch('http://localhost:3000/api/furniture').then(res => res.json());
+const fetchFurnitures = async () => {
+  furnitures = await fetch("http://localhost:3000/api/furniture").then((res) =>
+    res.json()
+  );
   console.log(furnitures);
 };
 
-const showFurnitures = async() => {
+const showFurnitures = async () => {
   await fetchFurnitures();
 
-  allFurnitures.innerHTML = (
-    furnitures
-    .map(furniture =>(
-      `
+  allFurnitures.innerHTML = furnitures
+    .map(
+      (furniture) =>
+        `
       <li class="furniture-item">
           <img class="furniture-photo" src="${furniture.imageUrl}"/>
           <h3 class="furniture-name">${furniture.name}</h3>
@@ -96,10 +94,8 @@ const showFurnitures = async() => {
       </li>
       
       `
-    )).join('')
-    );
+    )
+    .join("");
 };
-      
-showFurnitures();
-   
 
+showFurnitures();
